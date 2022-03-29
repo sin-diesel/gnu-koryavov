@@ -2,7 +2,6 @@
 
 sem=$1
 str_num=$2
-zad=$3
 
 #positive=("Y" "y" "Yes" "yes")
 
