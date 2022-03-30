@@ -10,13 +10,13 @@ open() {
         
     if [[ $ans == "y"* || $ans == "Y"* || $ans == "д"* || $ans == "Д"* ]]; then
 
-        if [ ! -f "KORYAVNIKS/${sem}.djvu" ]; then
+        if [ ! -f ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu ]; then
         
-            download.sh $sem
+            download $sem
         
         fi
         
-        ./${pdfviewer_script} $sem $str_num
+        ${pdfviewer_script} $sem $str_num
 
     fi
 }
@@ -26,7 +26,7 @@ download() {
     sem=$1
     source ~/./gnu-koryavov/config.conf
 
-    cd ~/gnu-koryavov && wget -O KORYAVNIKS/${sem}.djvu ${KORYAVNIKS[$sem]}
+    cd ~/gnu-koryavov/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
 }
 
 
