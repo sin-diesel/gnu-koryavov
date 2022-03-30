@@ -6,22 +6,17 @@ open() {
     str_num=$2
     source ~/./gnu-koryavov/config.conf
 
-    #positive=("Y" "y" "Yes" "yes")
-
     read -p "Открыть электронный корявник? (Д/н): " ans
         
     if [[ $ans == "y"* || $ans == "Y"* || $ans == "д"* || $ans == "Д"* ]]; then
 
         if [ ! -f "KORYAVNIKS/${sem}.djvu" ]; then
         
-            #./${pdfviewer_script}
-            #mkdir -p KORYAVNIKS/
             download.sh $sem
         
         fi
         
         ./${pdfviewer_script} $sem $str_num
-        #./okular.sh $sem $str_num
 
     fi
 }
