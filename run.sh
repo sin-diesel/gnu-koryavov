@@ -1,35 +1,5 @@
 #!/bin/bash
 
-open() {
-
-    sem=$1
-    str_num=$2
-    source ~/./gnu-koryavov/config.conf
-
-    read -p "Открыть электронный корявник? (Д/н): " ans
-        
-    if [[ $ans == "y"* || $ans == "Y"* || $ans == "д"* || $ans == "Д"* ]]; then
-
-        if [ ! -f ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu ]; then
-        
-            download $sem
-        
-        fi
-        
-        ${pdfviewer_script} $sem $str_num
-
-    fi
-}
-
-download() {
-    
-    sem=$1
-    source ~/./gnu-koryavov/config.conf
-
-    cd ~/gnu-koryavov/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
-}
-
-
 echo -n "Введите номер семестра: "
 read sem
 
@@ -45,9 +15,9 @@ if [[ $? -eq 0 ]]; then
 
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Задача $zad найдена на странице №$str_num!"
-    
-    open $sem $str_num
 
 else
     echo "Задача $zad не найдена в корявнике:("
 fi
+
+
