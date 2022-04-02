@@ -36,10 +36,14 @@ read sem
 echo -n "Введите номер задачи: "
 read zad
 
-curl -s  "https://mipt1.ru/1_2_3_4_5_kor.php?sem=$sem&zad=$zad" |  iconv -f WINDOWS-1251 -t UTF-8 > tmp
+if [ ! -f /tmp/gnu-koryavov/${sem}-${zad}.tmp ]; then
 
-status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" tmp)
-rm tmp
+    mkdir -p /tmp/gnu-koryavov/
+    curl -s  "https://mipt1.ru/1_2_3_4_5_kor.php?sem=$sem&zad=$zad" |  iconv -f WINDOWS-1251 -t UTF-8 > /tmp/gnu-koryavov/${sem}-${zad}.tmp
+    
+fi
+
+status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
 
 if [[ $? -eq 0 ]]; then
 
@@ -50,4 +54,12 @@ if [[ $? -eq 0 ]]; then
 
 else
     echo "Задача $zad не найдена в корявнике:("
+fi
+
+
+filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+if [[ $filesize -eq 0 ]]; then
+
+    rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
+    
 fi
