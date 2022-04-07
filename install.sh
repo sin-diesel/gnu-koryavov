@@ -1,12 +1,13 @@
 #!/bin/bash
 
+home_dir="gnu-koryavov"
 read -p "Вы уверены, что хотите установить скрипт gnu-koryavov в систему? (Д/н): " ans
 
 if [[ $ans == "y"* || $ans == "Y"* || $ans == "д"* || $ans == "Д"* ]]; then
 
-    mkdir -p -v ~/gnu-koryavov/KORYAVNIKS
-    cp config.conf ~/gnu-koryavov
-    sudo cp run.sh /usr/local/bin/gnu-koryavov
+    mkdir -p -v ~/$home_dir/KORYAVNIKS
+    cp config.conf ~/$home_dir
+    sudo cp run.sh /usr/local/bin/$home_dir
     
-    echo "скрипт gnu-koryavov установлен"
+    echo "Cкрипт gnu-koryavov установлен."
 fi
