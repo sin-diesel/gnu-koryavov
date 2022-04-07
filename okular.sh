@@ -1,7 +1,7 @@
 #!/bin/bash
 
-okular --version > /dev/null
-if [[ $? != 0 ]]; then
+okular --version 2> /dev/null
+if [[ $? -ne 0 ]]; then
     
     echo "Okular не установлен!"
     exit
