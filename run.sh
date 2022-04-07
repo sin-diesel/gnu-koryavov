@@ -29,12 +29,27 @@ download() {
     cd ~/gnu-koryavov/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
 }
 
+# get input options
+while getopts ":s:n:h" opt; do
+    case ${opt} in
+        s)
+            arg="$OPTARG"
+            echo "Выбранный семестр: $arg"
+            sem=$arg
+            ;;
 
-echo -n "Введите номер семестра: "
-read sem
-
-echo -n "Введите номер задачи: "
-read zad
+        n)  
+            arg="$OPTARG"
+            echo "Выбранная задача: $arg"
+            zad=$arg
+            ;;
+        ?|h)
+            echo "Usage: TODO"
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND -1))
 
 if [ ! -f /tmp/gnu-koryavov/${sem}-${zad}.tmp ]; then
 
@@ -50,16 +65,16 @@ if [[ $? -eq 0 ]]; then
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Задача $zad найдена на странице №$str_num!"
     
-    open $sem $str_num
+    # open $sem $str_num
 
 else
-    echo "Задача $zad не найдена в корявнике:("
+    echo "Задача $zad не найдена в корявнике :("
 fi
 
 
-filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
-if [[ $filesize -eq 0 ]]; then
+# filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+# if [[ $filesize -eq 0 ]]; then
 
-    rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
+#     rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
     
-fi
+# fi
