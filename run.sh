@@ -4,30 +4,29 @@ open() {
 
     sem=$1
     str_num=$2
-    source ~/./gnu-koryavov/config.conf
 
     read -p "Открыть электронный корявник? (Д/н): " ans
         
     if [[ $ans == "y"* || $ans == "Y"* || $ans == "д"* || $ans == "Д"* ]]; then
 
-        if [ ! -f ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu ]; then
-        
-            download $sem
-        
-        fi
+        # if [ ! -f ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu ]; then
+        #     download $sem
+        # fi
         
         ${pdfviewer_script} $sem $str_num
 
     fi
+
 }
 
 download() {
     
     sem=$1
-    source ~/./gnu-koryavov/config.conf
-
     cd ~/gnu-koryavov/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
+
 }
+
+source ~/gnu-koryavov/config.conf
 
 
 echo -n "Введите номер семестра: "
@@ -57,9 +56,9 @@ else
 fi
 
 
-filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
-if [[ $filesize -eq 0 ]]; then
+# filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+# if [[ $filesize -eq 0 ]]; then
 
-    rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
+#     rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
     
-fi
+# fi
