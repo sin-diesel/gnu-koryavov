@@ -4,7 +4,7 @@ open() {
 
     sem=$1
     str_num=$2
-    source ~/./gnu-koryavov/config.conf
+    source ~/gnu-koryavov/config.conf
 
     read -p "Открыть электронный корявник? (Д/н): " ans
         
@@ -24,7 +24,7 @@ open() {
 download() {
     
     sem=$1
-    source ~/./gnu-koryavov/config.conf
+    source ~/gnu-koryavov/config.conf
 
     cd ~/gnu-koryavov/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
 }
