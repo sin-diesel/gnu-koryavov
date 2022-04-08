@@ -47,12 +47,19 @@ while getopts ":s:n:h" opt; do
             echo "Выбранная задача: $arg"
             zad=$arg
             ;;
-        ?|h)
+        \?|h)
             echo "Usage: TODO"
             exit 1
             ;;
     esac
 done
+
+# exit if no option is provided
+if [ "$#" -lt 2 ]; then
+    echo "Usage: TODO"
+    exit 1
+fi
+
 shift $((OPTIND -1))
 
 if [ ! -f /tmp/gnu-koryavov/${sem}-${zad}.tmp ]; then
