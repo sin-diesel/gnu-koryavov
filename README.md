@@ -20,7 +20,7 @@ gnu-koryavov
 
 ```shell
 git clone https://github.com/sin-diesel/gnu-koryavov
-cd gnu-koyravov
+cd gnu-koryavov
 ./install.sh
 ```
 
