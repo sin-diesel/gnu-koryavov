@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 home_dir="gnu-koryavov"
 read -p "Вы уверены, что хотите установить скрипт gnu-koryavov в систему? (Д/н): " ans

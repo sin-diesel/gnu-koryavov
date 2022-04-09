@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 open() {
 
@@ -63,7 +63,7 @@ fi
 shift $((OPTIND -1))
 
 task_regex="[[:digit:]]+\.[[:digit:]]+"
-if ! [[ $num =~ $task_regex ]]; then
+if ! [[ $zad =~ $task_regex ]]; then
     echo "Укажите номер задачи корректно!"
     exit 1
 fi

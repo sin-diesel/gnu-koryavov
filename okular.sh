@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 okular --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
@@ -11,4 +11,4 @@ fi
 sem=$1
 str_num=$2
 
-okular -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu
+okular -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu &>/dev/null &
