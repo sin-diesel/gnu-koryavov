@@ -8,17 +8,11 @@ open() {
     source ~/gnu-koryavov/config.conf
 
 
-    read -p "Открыть электронный корявник? (Д/н): " ans
-        
-    if [[ $ans == "y"* || $ans == "Y"* || $ans == "д"* || $ans == "Д"* ]]; then
-
-        # if [ ! -f ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu ]; then
-        #     download $sem
-        # fi
-        
-        ${pdfviewer_script} $sem $str_num
-
+    if [ ! -f ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu ]; then
+        download $sem
     fi
+    
+    ${pdfviewer_script} $sem $str_num
 
 }
 
@@ -34,18 +28,22 @@ download() {
 
 
 # get input options
-while getopts ":s:n:h" opt; do
+while getopts ":s:n:o:h" opt; do
     case ${opt} in
-        s)
+        s) # -s <semester>
             arg="$OPTARG"
             echo "Выбранный семестр: $arg"
             sem=$arg
             ;;
 
-        n)  
+        n) # -n <problem-number> 
             arg="$OPTARG"
             echo "Выбранная задача: $arg"
             zad=$arg
+            ;;
+        o) # -open
+            open=true
+            echo "Электронный корявник будет открыт"
             ;;
         \?|h)
             echo "Usage: TODO"
@@ -63,7 +61,7 @@ fi
 shift $((OPTIND -1))
 
 task_regex="[[:digit:]]+\.[[:digit:]]+"
-if ! [[ $num =~ $task_regex ]]; then
+if ! [[ $zad =~ $task_regex ]]; then
     echo "Укажите номер задачи корректно!"
     exit 1
 fi
@@ -83,7 +81,9 @@ if [[ $? -eq 0 ]]; then
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Задача $zad найдена на странице №$str_num!"
     
-    # open $sem $str_num
+    if [[ $open = true ]]; then
+        open $sem $str_num
+    fi
 
 else
     echo "Задача $zad не найдена в корявнике :("
