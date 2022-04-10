@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 atril --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
