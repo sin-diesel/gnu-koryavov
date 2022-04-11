@@ -42,7 +42,7 @@ while getopts ":s:n:o:h" opt; do
             zad=$arg
             ;;
         o) # -open
-            open=true
+            open="true"
             echo "Электронный корявник будет открыт"
             ;;
         \?|h)
@@ -81,7 +81,7 @@ if [[ $? -eq 0 ]]; then
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Задача $zad найдена на странице №$str_num!"
     
-    if [[ $open = true ]]; then
+    if [[ $open == "true" ]]; then
         open $sem $str_num
     fi
 
