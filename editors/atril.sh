@@ -11,4 +11,4 @@ fi
 sem=$1
 str_num=$2
 
-atril -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu &>/dev/null &
+atril -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu 2> /dev/null 

@@ -11,4 +11,4 @@ fi
 sem=$1
 str_num=$2
 
-xreader -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu
+xreader -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu 2> /dev/null
