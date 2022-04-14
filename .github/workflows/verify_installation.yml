@@ -27,9 +27,9 @@ jobs:
 
       - name: Run image and test installation
         run: |
-          image_name=$(docker ps -a | grep "installation:")
-         # echo "Running image: $image_name" &&
-         # docker run -d installation:v1.0
+          echo "Running image..." &&
+          chmod +x gnu-koryavov/ci-scripts/entrypoint.sh &&
+          sudo docker run installation:v1.0
 
 
 

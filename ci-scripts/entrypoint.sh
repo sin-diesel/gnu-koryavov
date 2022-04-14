@@ -2,8 +2,12 @@
 
 
 install_dir="scripts/"
+workingdir="/home/gnu-koryavov"
 
-cd ../ && \
+echo "$PWD contents:"
+ls -la
+
+cd $workingdir && \
 echo "Searching $install_dir directory in $PWD..."
 
 cd $install_dir && \
