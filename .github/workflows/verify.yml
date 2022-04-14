@@ -21,15 +21,28 @@ jobs:
 
       - name: Build docker image
         run: |
-            echo "Creating docker image..." &&
-            cp gnu-koryavov/ci-scripts/Dockerfile_install . &&
-            docker build -t installation:v1.0 . -f Dockerfile_install
+          echo "Creating docker image..." &&
+          cp gnu-koryavov/ci-scripts/Dockerfile_install . &&
+          docker build -t installation:v1.0 . -f Dockerfile_install
 
       - name: Run image and test installation
         run: |
           echo "Running image..." &&
           chmod +x gnu-koryavov/ci-scripts/entrypoint_install.sh &&
-          sudo docker run installation:v1.0 
+          sudo docker run installation:v1.0
+
+      - name: Create output artifacts directory
+        run: |
+          mkdir -v output/ &&
+          sudo docker save installation:v1.0 > installation_image.tar &&
+          mv installation_image.tar output/
+
+      - name: Upload the docker image
+        uses: actions/upload-artifact@v2
+        with:
+          name: docker_output
+          path: |
+            output/installation_image.tar
 
   VerifyUbuntuLaunch:
 
@@ -44,29 +57,18 @@ jobs:
           ref : ${{ github.event.pull_request.head.sha }}
           path: gnu-koryavov
 
-      - name: Build docker image
-        run: |
-          echo "Creating docker image..." &&
-          ls -la &&
-          cp gnu-koryavov/ci-scripts/Dockerfile_install . &&
-          docker build -t installation:v1.0 -f Dockerfile_install . &&
-          cp gnu-koryavov/ci-scripts/Dockerfile_run . &&
-          docker build -t run:v1.0 -f Dockerfile_run .
-
-      - name: Run image and test installation
-        run: |
-          echo "Running image..." &&
-          chmod +x gnu-koryavov/ci-scripts/entrypoint_install.sh &&
-          sudo docker run installation:v1.0
+      - name: Download the docker image from install job
+        uses: actions/download-artifact@v2
+        with:
+          name: docker_output
 
       - name: Run image and test ubuntu launch
         run: |
-          echo "Running image..." &&
-          chmod +x gnu-koryavov/ci-scripts/entrypoint_run.sh &&
-          sudo docker run run:v1.0
-
-
-
-
-    
-
+          ls -la &&
+          docker load -i installation_image.tar &&
+          sudo docker run installation:v1.0 &&
+          docker ps -a && 
+          container=$(docker ps -a | awk 'FNR == 2 {print $1}') &&
+          docker start -a $container
+          echo "Running container is: $container" &&
+          docker exec $container test_run.sh
