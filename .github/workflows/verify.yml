@@ -1,0 +1,79 @@
+
+
+name: Verify installation
+
+
+on:
+  [ pull_request ]
+
+jobs:
+
+  VerifyInstallation:
+
+    runs-on: ubuntu-latest 
+
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          ref : ${{ github.event.pull_request.head.sha }}
+          path: gnu-koryavov
+
+      - name: Build docker image
+        run: |
+            echo "Creating docker image..." &&
+            ls -la &&
+            cp gnu-koryavov/ci-scripts/Dockerfile . &&
+            docker build -t installation:v1.0 .
+
+      - name: Run image and test installation
+        run: |
+          echo "Running image..." &&
+          chmod +x gnu-koryavov/ci-scripts/entrypoint.sh &&
+          sudo docker run installation:v1.0
+
+      - name: Run image and test ubuntu launch
+        run: |
+          echo "Running image..." &&
+          chmod +x gnu-koryavov/ci-scripts/entrypoint_run.sh &&
+          sudo docker run installation:v1.0
+
+  VerifyUbuntuLaunch:
+
+    runs-on: ubuntu-latest
+
+    needs: VerifyInstallation
+
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          ref : ${{ github.event.pull_request.head.sha }}
+          path: gnu-koryavov
+
+      - name: Build docker image
+        run: |
+          echo "Creating docker image..." &&
+          ls -la &&
+          cp gnu-koryavov/ci-scripts/Dockerfile_install . &&
+          docker build -t installation:v1.0 -f Dockerfile_install . &&
+          cp gnu-koryavov/ci-scripts/Dockerfile_run . &&
+          docker build -t run:v1.0 -f Dockerfile_run .
+
+      - name: Run image and test installation
+        run: |
+          echo "Running image..." &&
+          chmod +x gnu-koryavov/ci-scripts/entrypoint_install.sh &&
+          sudo docker run installation:v1.0
+
+      - name: Run image and test ubuntu launch
+        run: |
+          echo "Running image..." &&
+          chmod +x gnu-koryavov/ci-scripts/entrypoint_run.sh &&
+          sudo docker run run:v1.0
+
+
+
+
+    
+
