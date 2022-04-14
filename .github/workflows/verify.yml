@@ -22,21 +22,14 @@ jobs:
       - name: Build docker image
         run: |
             echo "Creating docker image..." &&
-            ls -la &&
-            cp gnu-koryavov/ci-scripts/Dockerfile . &&
-            docker build -t installation:v1.0 .
+            cp gnu-koryavov/ci-scripts/Dockerfile_install . &&
+            docker build -t installation:v1.0 . -f Dockerfile_install
 
       - name: Run image and test installation
         run: |
           echo "Running image..." &&
-          chmod +x gnu-koryavov/ci-scripts/entrypoint.sh &&
-          sudo docker run installation:v1.0
-
-      - name: Run image and test ubuntu launch
-        run: |
-          echo "Running image..." &&
-          chmod +x gnu-koryavov/ci-scripts/entrypoint_run.sh &&
-          sudo docker run installation:v1.0
+          chmod +x gnu-koryavov/ci-scripts/entrypoint_install.sh &&
+          sudo docker run installation:v1.0 
 
   VerifyUbuntuLaunch:
 
