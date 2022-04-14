@@ -4,6 +4,7 @@
 install_dir="scripts/"
 workingdir="/home/gnu-koryavov"
 
+
 echo "$PWD contents:"
 ls -la
 
@@ -39,9 +40,9 @@ else
     
 fi
 
-if [ -f "/usr/local/bin/gnu-koyravov" ]; then
+if [ -f "/usr/local/bin/gnu-koryavov" ]; then
 
-    echo "/usr/local/bin/gnu-koyravov exists test: OK"
+    echo "/usr/local/bin/gnu-koryavov exists test: OK"
 
 else
 
