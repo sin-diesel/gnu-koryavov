@@ -11,4 +11,4 @@ fi
 sem=$1
 str_num=$2
 
-evince -i $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu
+evince -i $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu 2> /dev/null
