@@ -1,6 +1,6 @@
 
 
-name: Verify installation
+name: Installation and launch CI
 
 
 on:

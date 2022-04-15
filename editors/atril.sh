@@ -3,7 +3,7 @@
 atril --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
     
-    echo "Atril не установлен!"
+    echo "Atril not installed!"
     exit
     
 fi

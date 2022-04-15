@@ -20,12 +20,15 @@
 
 semester="3"
 task="4.23"
+page="134"
 
-../../scripts/run.sh -s $semester -n $task > output.tmp
-output_task=$(grep "Выбранный семестр:" output.tmp | sed -nr 's/.*([[:digit:]]{1,4}).*/\1/p')
+/home/gnu-koryavov/scripts/run.sh -s $semester -n $task > output.tmp
+grep "found on page: " output.tmp
+output_page=$(grep "found on page: " output.tmp | sed -nr "s/.* found on page: ([[:digit:]]{1,3})!.*/\1/p")
+cat output.tmp
 
-if [[ $output_task != $task ]]; then
-    echo "Run FAILED: expected task=$task, got task=$output_task"
+if [[ $output_page != $page ]]; then
+    echo "Run FAILED: expected page=$page, got task=$output_page"
     exit 1
 fi
 
