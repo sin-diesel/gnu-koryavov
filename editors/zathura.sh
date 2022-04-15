@@ -1,10 +1,9 @@
 #!/bin/bash
 
 check_res=$(zathura --version 2> /dev/null)
-echo $check_res
-if [[ $? -ne 0 || $checkres -ne *"pdf"* ]]; then
+if [[ $? -ne 0 || ! $check_res == *"pdf"* ]]; then
     
-    echo "Zathura не установлен!"
+    echo "Zathura PDF не установлен!"
     exit
     
 fi
