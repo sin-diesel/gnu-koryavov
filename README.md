@@ -61,7 +61,7 @@ cd gnu-koryavov
 - [Atril](https://github.com/mate-desktop/atril)
 - [Evince](https://github.com/GNOME/evince)
 - [Xreader](https://github.com/linuxmint/xreader)
-
+- [Zathura](https://github.com/pwmt/zathura)
 Для использования одного из них нужно лишь установить путь к нему в соответствии значению `pdfviewer_script` в файле `config.conf`.  
 Это значение по умолчанию указывает на `~/gnu-koryavov/okular.sh`, поэтому, если Вы хотите использовать Okular, сразу после установки выполните (и можете приступать к использованию)
 
