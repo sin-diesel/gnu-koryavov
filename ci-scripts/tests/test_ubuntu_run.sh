@@ -1,28 +1,28 @@
-#!/bin/sh
+#!/bin/bash
 
 
-install_dir="scripts/"
-workingdir="/home/gnu-koryavov"
+# install_dir="scripts/"
+# workingdir="/home/gnu-koryavov"
 
 
-echo "$PWD contents:"
-ls -la
+# echo "$PWD contents:"
+# ls -la
 
-cd $workingdir && \
-echo "Searching $install_dir directory in $PWD..."
+# cd $workingdir && \
+# echo "Searching $install_dir directory in $PWD..."
 
-cd $install_dir && \
-ls -la &&
-echo "Running install.sh..." &&
-chmod +x install.sh && \
-yes | ./install.sh
+# cd $install_dir && \
+# ls -la &&
+# echo "Running install.sh..." &&
+# chmod +x install.sh && \
+# yes | ./install.sh
 
 
 semester="3"
 task="4.23"
 
-./run.sh -s $semester -n $task > output.tmp
-output_task=$(grep "Выбранный семестр:" | sed -nr 's/.*([[:digit:]]{1,4}).*/\1/p')
+../../scripts/run.sh -s $semester -n $task > output.tmp
+output_task=$(grep "Выбранный семестр:" output.tmp | sed -nr 's/.*([[:digit:]]{1,4}).*/\1/p')
 
 if [[ $output_task != $task ]]; then
     echo "Run FAILED: expected task=$task, got task=$output_task"

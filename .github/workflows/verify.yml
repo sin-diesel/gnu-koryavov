@@ -66,8 +66,5 @@ jobs:
         run: |
           ls -la &&
           docker load -i installation_image.tar &&
-          sudo docker run installation:v1.0 gnu-koryavov/ci-scripts/tests/test_install.sh &&
-          docker ps -a && 
-          container=$(docker ps -a | awk 'FNR == 2 {print $1}') &&
-          docker start -a $container
-          echo "Running container is: $container"
+          sudo docker run --entrypoint="/home/gnu-koryavov/ci-scripts/tests/test_ubuntu_run.sh" installation:v1.0  &&
+          container=$(docker ps -a | awk 'FNR == 2 {print $1}')
