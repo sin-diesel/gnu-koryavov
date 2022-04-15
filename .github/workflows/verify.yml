@@ -22,14 +22,14 @@ jobs:
       - name: Build docker image
         run: |
           echo "Creating docker image..." &&
-          cp gnu-koryavov/ci-scripts/Dockerfile_install . &&
-          docker build -t installation:v1.0 . -f Dockerfile_install
+          cp gnu-koryavov/ci-scripts/Dockerfile . &&
+          docker build -t installation:v1.0 . -f Dockerfile
 
       - name: Run image and test installation
         run: |
           echo "Running image..." &&
-          chmod +x gnu-koryavov/ci-scripts/entrypoint_install.sh &&
-          sudo docker run installation:v1.0
+          ls gnu-koryavov/ci-scripts/tests -la &&
+          sudo docker run --entrypoint="/home/gnu-koryavov/ci-scripts/tests/test_install.sh" installation:v1.0 
 
       - name: Create output artifacts directory
         run: |
@@ -66,9 +66,8 @@ jobs:
         run: |
           ls -la &&
           docker load -i installation_image.tar &&
-          sudo docker run installation:v1.0 &&
+          sudo docker run installation:v1.0 gnu-koryavov/ci-scripts/tests/test_install.sh &&
           docker ps -a && 
           container=$(docker ps -a | awk 'FNR == 2 {print $1}') &&
           docker start -a $container
-          echo "Running container is: $container" &&
-          docker exec $container test_run.sh
+          echo "Running container is: $container"
