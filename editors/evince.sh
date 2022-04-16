@@ -8,6 +8,7 @@ if [[ $? -ne 0 ]]; then
     
 fi
 
+
 sem=$1
 str_num=$2
 
