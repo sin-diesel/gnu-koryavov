@@ -14,3 +14,4 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     echo "gnu-koryavov successfully installed."
 
 fi
+

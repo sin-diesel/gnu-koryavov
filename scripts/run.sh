@@ -12,7 +12,7 @@ open() {
         download $sem
     fi
     
-    ${pdfviewer_script} $sem $str_num
+    ${djvuviewer_script} $sem $str_num
 
 }
 
