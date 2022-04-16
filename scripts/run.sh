@@ -32,18 +32,18 @@ while getopts ":s:n:o:h" opt; do
     case ${opt} in
         s) # -s <semester>
             arg="$OPTARG"
-            echo "Выбранный семестр: $arg"
+            echo "Chosen semester: $arg"
             sem=$arg
             ;;
 
         n) # -n <problem-number> 
             arg="$OPTARG"
-            echo "Выбранная задача: $arg"
+            echo "Chosen task: $arg"
             zad=$arg
             ;;
         o) # -open
             open="true"
-            echo "Электронный корявник будет открыт"
+            echo "Digital koryavov book will be opened."
             ;;
         \?|h)
             echo "Usage: TODO"
@@ -62,7 +62,7 @@ shift $((OPTIND -1))
 
 task_regex="[[:digit:]]+\.[[:digit:]]+"
 if ! [[ $zad =~ $task_regex ]]; then
-    echo "Укажите номер задачи корректно!"
+    echo "Specify task number correctly!"
     exit 1
 fi
 
@@ -79,14 +79,14 @@ status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" 
 if [[ $? -eq 0 ]]; then
 
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
-    echo "Задача $zad найдена на странице №$str_num!"
+    echo "Task $zad found on page: $str_num!"
     
     if [[ $open == "true" ]]; then
         open $sem $str_num
     fi
 
 else
-    echo "Задача $zad не найдена в корявнике :("
+    echo "Task $zad not found in Koryavov :("
 fi
 
 

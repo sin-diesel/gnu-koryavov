@@ -3,7 +3,7 @@
 xreader --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
     
-    echo "Xreader не установлен!"
+    echo "Xreader not installed!"
     exit
     
 fi

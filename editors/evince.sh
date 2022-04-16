@@ -3,7 +3,7 @@
 evince --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
     
-    echo "Evince не установлен!"
+    echo "Evince not installed!"
     exit
     
 fi

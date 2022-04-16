@@ -3,7 +3,7 @@
 okular --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
     
-    echo "Okular не установлен!"
+    echo "Okular not installed!"
     exit
     
 fi
