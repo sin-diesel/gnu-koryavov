@@ -63,7 +63,7 @@ cd gnu-koryavov
 - [Xreader](https://github.com/linuxmint/xreader)
 - [Zathura](https://github.com/pwmt/zathura)
 
-Для использования одного из них нужно лишь установить путь к нему в соответствии значению `pdfviewer_script` в файле `config.conf`.  
+Для использования одного из них нужно лишь установить путь к нему в соответствии значению `djvuviewer_script` в файле `config.conf`.  
 Это значение по умолчанию указывает на `~/gnu-koryavov/okular.sh`, поэтому, если Вы хотите использовать Okular, сразу после установки выполните (и можете приступать к использованию)
 
 ```shell
@@ -75,7 +75,7 @@ cp okular.sh ~/gnu-koryavov/
 Например, если Вы хотите использовать Atril, и скрипт `atril.sh` расположен в `/home/user/gnu-koryavov/atril.sh`, измените нужный параметр `config.conf` следующим образом
 
 ```shell
-pdfviewer_script=/home/user/gnu-koryavov/atril.sh
+djvuviewer_script=/home/user/gnu-koryavov/atril.sh
 ```
 
 ## Использование другого средства просмотра
@@ -89,7 +89,7 @@ pdfviewer_script=/home/user/gnu-koryavov/atril.sh
 
 Скрипт должен открывать на указанной странице файл `<номер-семестра>.djvu`, расположенный в `~/gnu-koryavov/KORYAVNIKS`.
 
-Чтобы `gnu-koryavov` запускал Ваш скрипт вместо `okular.sh`, в файле `~/gnu-koryavov/config.conf` измените значение параметра `pdfviewer_script` на путь к вашему скрипту, как это сделано по умолчанию. *Не забудьте поделиться этим скриптом со всеми пользователями `gnu-koryavov`, создав соответсвующий пулл-реквест!*
+Чтобы `gnu-koryavov` запускал Ваш скрипт вместо `okular.sh`, в файле `~/gnu-koryavov/config.conf` измените значение параметра `djvuviewer_script` на путь к вашему скрипту, как это сделано по умолчанию. *Не забудьте поделиться этим скриптом со всеми пользователями `gnu-koryavov`, создав соответсвующий пулл-реквест!*
 
 # Авторство и благодарности
 
