@@ -22,6 +22,9 @@ semester="3"
 task="4.23"
 page="134"
 
+ls -la /home
+echo $HOME
+
 /home/gnu-koryavov/scripts/run.sh -o -s $semester -n $task > output.tmp
 grep "found on page: " output.tmp
 output_page=$(grep "found on page: " output.tmp | sed -nr "s/.* found on page: ([[:digit:]]{1,3})!.*/\1/p")

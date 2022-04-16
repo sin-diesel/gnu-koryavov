@@ -51,3 +51,5 @@ else
     
 fi
 
+ls -la /root
+

@@ -64,7 +64,6 @@ jobs:
 
       - name: Run image and test ubuntu launch
         run: |
-          ls -la &&
           docker load -i installation_image.tar &&
           sudo docker run --entrypoint="/home/gnu-koryavov/ci-scripts/tests/test_ubuntu_run.sh" installation:v1.0  &&
           container=$(docker ps -a | awk 'FNR == 2 {print $1}')
