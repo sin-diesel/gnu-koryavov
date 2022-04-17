@@ -12,6 +12,7 @@ open() {
         download $sem
     fi
     
+    echo "djvuviewer_script is $djvuviewer_script"
     ${djvuviewer_script} $sem $str_num
 
 }
