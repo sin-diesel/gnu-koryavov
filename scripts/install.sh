@@ -19,7 +19,9 @@ if [[ $? -eq 0 ]] ; then
     sed -i "s/okular.sh/atril.sh/g" ../config.conf
     cat ../config.conf
 
-fi 
+fi
+
+echo $HOME
 
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 

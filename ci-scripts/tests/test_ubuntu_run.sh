@@ -22,16 +22,17 @@ semester="3"
 task="4.23"
 page="134"
 
+ls -la /usr/local/bin/
+ls -la /root
 ls -la /home
-echo $HOME
 
-/home/gnu-koryavov/scripts/run.sh -o -s $semester -n $task > output.tmp
+$HOME/gnu-koryavov/scripts/run.sh -o -s $semester -n $task > output.tmp
 grep "found on page: " output.tmp
 output_page=$(grep "found on page: " output.tmp | sed -nr "s/.* found on page: ([[:digit:]]{1,3})!.*/\1/p")
 cat output.tmp
 
 if [[ $output_page != $page ]]; then
-    echo "Run FAILED: expected page=$page, got task=$output_page"
+    echo "Run FAILED: expected page=$page, got page=$output_page"
     exit 1
 fi
 
