@@ -16,8 +16,6 @@ is_ubuntu=$(echo $os_info | grep -i "ubuntu")
 if [[ $? -eq 0 ]] ; then
 
     echo "Running on ubuntu machine. Default editor: $ubuntu_default_editor"
-    sed -i "s/okular.sh/atril.sh/g" ../config.conf
-    cat ../config.conf
 
 fi
 
@@ -28,7 +26,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     mkdir -p -v $HOME/$home_dir/KORYAVNIKS
     cp ../config.conf $HOME/$home_dir
     sudo cp run.sh /usr/local/bin/$home_dir
-    sudo cp ../editors/atril.sh $HOME/$home_dir
+    sudo cp ../editors/atril.sh $HOME$/$home_dir
     
     echo "gnu-koryavov successfully installed."
 
