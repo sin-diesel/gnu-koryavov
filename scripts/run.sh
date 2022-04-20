@@ -12,6 +12,7 @@ open() {
         download $sem
     fi
     
+    echo "djvuviewer_script is $djvuviewer_script"
     ${djvuviewer_script} $sem $str_num
 
 }
@@ -28,7 +29,7 @@ download() {
 
 
 # get input options
-while getopts ":s:n:o:h" opt; do
+while getopts ":s:n:oh" opt; do
     case ${opt} in
         s) # -s <semester>
             arg="$OPTARG"
@@ -42,7 +43,7 @@ while getopts ":s:n:o:h" opt; do
             zad=$arg
             ;;
         o) # -open
-            open="true"
+            should_open="true"
             echo "Digital koryavov book will be opened."
             ;;
         \?|h)
@@ -81,8 +82,11 @@ if [[ $? -eq 0 ]]; then
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Task $zad found on page: $str_num!"
     
-    if [[ $open == "true" ]]; then
+    if [[ $should_open == "true" ]]; then
+
+        echo "Opening viewer on page $str_num."
         open $sem $str_num
+
     fi
 
 else

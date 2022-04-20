@@ -34,15 +34,16 @@ jobs:
       - name: Create output artifacts directory
         run: |
           mkdir -v output/ &&
-          sudo docker save installation:v1.0 > installation_image.tar &&
-          mv installation_image.tar output/
+          container=$(docker ps -a | awk 'FNR == 2 {print $1}') &&
+          sudo docker export $container > installation.tar &&
+          mv installation.tar output/
 
       - name: Upload the docker image
         uses: actions/upload-artifact@v2
         with:
           name: docker_output
           path: |
-            output/installation_image.tar
+            output/installation.tar
 
   VerifyUbuntuLaunch:
 
@@ -64,7 +65,6 @@ jobs:
 
       - name: Run image and test ubuntu launch
         run: |
-          ls -la &&
-          docker load -i installation_image.tar &&
+          docker import installation.tar installation:v1.0 &&
           sudo docker run --entrypoint="/home/gnu-koryavov/ci-scripts/tests/test_ubuntu_run.sh" installation:v1.0  &&
           container=$(docker ps -a | awk 'FNR == 2 {print $1}')

@@ -11,4 +11,5 @@ fi
 sem=$1
 str_num=$2
 
-atril -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu 2> /dev/null 
+echo "Launching atril on page $str_num..."
+atril -p $str_num ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu
