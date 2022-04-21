@@ -20,6 +20,8 @@ if [[ $? -eq 0 ]] ; then
 
 fi
 
+editors=(okular, atril)
+
 echo $HOME
 
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
