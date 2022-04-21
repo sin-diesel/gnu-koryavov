@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -uo pipefail
 
 home_dir="gnu-koryavov"
 scipts_dir="scripts"
@@ -21,7 +21,11 @@ read -p "Are you sure you want to install gnu-koryavov on yout system (Y/N): " a
 #fi
 
 editors=(okular atril evince xreader zathura)
-echo ${editors[0]}
+for item in ${editors[*]}; do
+
+    $item --version
+
+done
 exit
 echo $HOME
 
