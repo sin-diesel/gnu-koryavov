@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 check_res=$(zathura --version 2> /dev/null)
 if [[ $? -ne 0 || ! $check_res == *"djvu"* ]]; then
