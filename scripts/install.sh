@@ -20,13 +20,23 @@ read -p "Are you sure you want to install gnu-koryavov on yout system (Y/N): " a
 
 #fi
 
+
 editors=(okular atril evince xreader zathura)
+editor="NO EDITOR"
+
 for item in ${editors[*]}; do
 
-    $item --version
+    $item --version &> /dev/null
+    if [[ $? == 0 ]]; then
+        editor=$item
+        break
+    fi
 
 done
+
+echo "Choosen editor: $editor. You can change it as wrote in README"
 exit
+
 echo $HOME
 
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
