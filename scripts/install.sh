@@ -8,18 +8,6 @@ ubuntu_default_editor="atril"
 
 read -p "Are you sure you want to install gnu-koryavov on yout system (Y/N): " ans
 
-#echo "Determining OS version..."
-#os_info=$(cat /etc/*release)
-#echo "$os_info"
-
-#is_ubuntu=$(echo $os_info | grep -i "ubuntu")
-
-#if [[ $? -eq 0 ]] ; then
-
-#    echo "Running on ubuntu machine. Default editor: $ubuntu_default_editor"
-
-#fi
-
 
 editors=(okular atril evince xreader zathura)
 editor="NO EDITOR"
