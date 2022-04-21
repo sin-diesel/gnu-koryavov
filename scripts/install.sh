@@ -34,9 +34,15 @@ for item in ${editors[*]}; do
 
 done
 
+if [[ $editor == "NO EDITOR" ]]; then
+
+    echo "No supported DjVU viewer intalled"
+    exit 0
+fi
+
 echo "Choosen editor: $editor. You can change it as wrote in README"
 sed -i "s/okular.sh/$editor.sh/" ./../config.conf
-exit
+
 
 echo $HOME
 
