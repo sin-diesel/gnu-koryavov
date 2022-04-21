@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
 
 check_res=$(zathura --version 2> /dev/null)
 if [[ $? -ne 0 || ! $check_res == *"djvu"* ]]; then

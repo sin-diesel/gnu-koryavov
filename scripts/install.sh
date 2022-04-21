@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
 
 home_dir="gnu-koryavov"
 scipts_dir="scripts"

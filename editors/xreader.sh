@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
 
 xreader --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
