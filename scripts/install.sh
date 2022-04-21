@@ -35,6 +35,7 @@ for item in ${editors[*]}; do
 done
 
 echo "Choosen editor: $editor. You can change it as wrote in README"
+sed -i "s/okular.sh/$editor.sh/" ./../config.conf
 exit
 
 echo $HOME
