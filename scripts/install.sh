@@ -2,7 +2,7 @@
 
 home_dir="gnu-koryavov"
 scipts_dir="scripts"
-gnukoryavov_name=gnu-koryavov-test
+gnukoryavov_name=gnu-koryavov
 dependencies=(curl egrep sed)
 
 ubuntu_default_editor="atril"
