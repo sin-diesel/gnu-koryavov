@@ -32,7 +32,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     for utility in ${dependencies[*]}; do
 
         $utility --version &> /dev/null
-        if [[ $? ! -eq 0 ]]; then
+        if [[ $? != 0 ]]; then
             echo "$utility is not installed!"
             exit 1
         fi
