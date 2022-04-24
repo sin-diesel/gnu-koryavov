@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home_dir="gnu-koryavov"
+home_dir=".gnu-koryavov"
 scipts_dir="scripts"
 gnukoryavov_name=gnu-koryavov
 dependencies=(curl egrep sed wget)
