@@ -68,10 +68,10 @@ cd gnu-koryavov/scripts
 
 ### Пример
 
-Например, если Вы хотите использовать Atril, и скрипт `atril.sh` расположен в `/home/user/gnu-koryavov/atril.sh`, измените нужный параметр `config.conf` следующим образом
+Например, если Вы хотите использовать Atril, и скрипт `atril.sh` расположен в `/home/user/.gnu-koryavov/atril.sh`, измените нужный параметр `config.conf` следующим образом
 
 ```shell
-djvuviewer_script=/home/user/gnu-koryavov/atril.sh
+djvuviewer_script=/home/user/.gnu-koryavov/atril.sh
 ```
 
 ## Использование другого средства просмотра
@@ -85,7 +85,15 @@ djvuviewer_script=/home/user/gnu-koryavov/atril.sh
 
 Скрипт должен открывать на указанной странице файл `<номер-семестра>.djvu`, расположенный в `~/gnu-koryavov/KORYAVNIKS`.
 
-Чтобы `gnu-koryavov` запускал Ваш скрипт вместо `okular.sh`, в файле `~/gnu-koryavov/config.conf` измените значение параметра `djvuviewer_script` на путь к вашему скрипту, как это сделано по умолчанию. *Не забудьте поделиться этим скриптом со всеми пользователями `gnu-koryavov`, создав соответсвующий пулл-реквест!*
+Чтобы `gnu-koryavov` запускал Ваш скрипт вместо `okular.sh`, в файле `~/.gnu-koryavov/config.conf` измените значение параметра `djvuviewer_script` на путь к вашему скрипту, как это сделано по умолчанию. *Не забудьте поделиться этим скриптом со всеми пользователями `gnu-koryavov`, создав соответсвующий пулл-реквест!*
+
+# Удаление
+Чтобы удалить `gnu-koryavov` из системы (клонированный Вами репозиторий не будет удалён) выполните
+
+```shell
+cd gnu-koryavov/scripts
+./uninstall.sh
+```
 
 # Авторство и благодарности
 
