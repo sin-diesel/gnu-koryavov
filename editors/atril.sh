@@ -1,4 +1,5 @@
 #!/bin/bash
+set -uo pipefail
 
 atril --version 2> /dev/null
 if [[ $? -ne 0 ]]; then
