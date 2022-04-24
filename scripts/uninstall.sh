@@ -1,11 +1,11 @@
 #!/bin/bash
 
+set -euo pipefail
+
 home_dir=".gnu-koryavov"
 scipts_dir="scripts"
 gnukoryavov_name="gnu-koryavov"
 tmp_dir="gnu-koryavov"
-
-ubuntu_default_editor="atril"
 
 read -p "Are you sure you want to remove gnu-koryavov from your system? (Y/n): " ans
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
