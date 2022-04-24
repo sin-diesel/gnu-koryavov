@@ -12,7 +12,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
 	rm -rf $HOME/$home_dir
 	rm -rf /tmp/$tmp_dir
-	sudo rm /usr/local/bin/gnukoryavov_name
+	sudo rm /usr/local/bin/$gnukoryavov_name
 
     echo "gnu-koryavov successfully removed."
 
