@@ -10,7 +10,7 @@ default_editors=(okular atril evince xreader zathura)
 
 
 read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
-if [[ $ans != "y"* || $ans != "Y"*  ]]; then
+if [[ $ans != "y"* && $ans != "Y"*  ]]; then
     echo "Exiting..."
     exit 0
 fi
@@ -51,7 +51,6 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
     if [[ $editor == "NO EDITOR" ]]; then
         echo "No supported DjVU viewer intalled. Proceeding with default value"
-    fi
     else
         echo "Choosen djvu viewer: $editor. You can change it at any time (for more information see README)"
         sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" ../config.conf
