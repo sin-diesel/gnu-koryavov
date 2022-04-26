@@ -4,7 +4,7 @@ home_dir="gnu-koryavov"
 scipts_dir="scripts"
 gnukoryavov_name="gnu-koryavov"
 dependencies=(curl egrep sed wget)
-default_editors=(okular atril evince xreader zathura)
+default_viewers=(okular atril evince xreader zathura)
 
 #ubuntu_default_editor="atril"
 
@@ -33,15 +33,15 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
     cp ../editors/* $HOME/$home_dir/
 
-    editor="NO EDITOR"
+    viewer="NO VIEWER"
 
-    for item in ${default_editors[*]}; do
+    for item in ${default_viewers[*]}; do
 
         $item --version &> /dev/null
         if [[ $? == 0 ]]; then
-            editor=$item
+            viewer=$item
 
-            read -p "Found $editor installed. Do you want to stop searching? (Y/n): " ans
+            read -p "Found $viewer installed. Do you want to stop searching? (Y/n): " ans
             if [[ $ans != "y"* || $ans != "Y"*  ]]; then
                 break
             fi
@@ -49,11 +49,11 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
     done
 
-    if [[ $editor == "NO EDITOR" ]]; then
+    if [[ $editor == "NO VIEWER" ]]; then
         echo "No supported DjVU viewer intalled. Proceeding with default value"
     else
-        echo "Choosen djvu viewer: $editor. You can change it at any time (for more information see README)"
-        sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" ../config.conf
+        echo "Choosen djvu viewer: $viewer. You can change it at any time (for more information see README)"
+        sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$viewer.sh/" ../config.conf
     fi
 fi
 
