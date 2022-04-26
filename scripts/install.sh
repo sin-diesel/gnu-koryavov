@@ -9,17 +9,29 @@ ubuntu_default_editor="atril"
 
 read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
 
-echo "Determining OS version..."
-os_info=$(cat /etc/*release)
-echo "$os_info"
 
-is_ubuntu=$(echo $os_info | grep -i "ubuntu")
+editors=(okular atril evince xreader zathura)
+editor="NO EDITOR"
 
-if [[ $? -eq 0 ]] ; then
+for item in ${editors[*]}; do
 
-    echo "Running on ubuntu machine. Default editor: $ubuntu_default_editor"
+    $item --version &> /dev/null
+    if [[ $? == 0 ]]; then
+        editor=$item
+        break
+    fi
 
+done
+
+if [[ $editor == "NO EDITOR" ]]; then
+
+    echo "No supported DjVU viewer intalled"
+    exit 0
 fi
+
+echo "Choosen editor: $editor. You can change it as wrote in README"
+sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" ../config.conf
+
 
 echo $HOME
 
