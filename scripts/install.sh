@@ -28,7 +28,7 @@ if [[ $editor == "NO EDITOR" ]]; then
 fi
 
 echo "Choosen editor: $editor. You can change it as wrote in README"
-sed -i "/djvuviewer_script/s/=~\/gnu-koryavov\/.*\.sh/=~\/gnu-koryavov\/$editor.sh/g" ./../config.conf
+sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" ../config.conf
 
 
 echo $HOME
