@@ -1,14 +1,17 @@
 #!/bin/bash
 
+home_dir=".gnu-koryavov"
+tmp_dir="gnu-koryavov"
+
 open() {
 
     sem=$1
     str_num=$2
 
-    source ~/gnu-koryavov/config.conf
+    source $HOME/$home_dir/config.conf
 
 
-    if [ ! -f ~/gnu-koryavov/KORYAVNIKS/${sem}.djvu ]; then
+    if [ ! -f $HOME/$home_dir/KORYAVNIKS/${sem}.djvu ]; then
         download $sem
     fi
     
@@ -21,9 +24,9 @@ download() {
     
     sem=$1
 
-    source ~/gnu-koryavov/config.conf
+    source $HOME/$home_dir/config.conf
 
-    cd ~/gnu-koryavov/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
+    cd $HOME/$home_dir/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
 
 }
 
@@ -68,14 +71,14 @@ if ! [[ $zad =~ $task_regex ]]; then
 fi
 
 
-if [ ! -f /tmp/gnu-koryavov/${sem}-${zad}.tmp ]; then
+if [ ! -f /tmp/$tmp_dir/${sem}-${zad}.tmp ]; then
 
-    mkdir -p /tmp/gnu-koryavov/
-    curl -s  "https://mipt1.ru/1_2_3_4_5_kor.php?sem=$sem&zad=$zad" |  iconv -f WINDOWS-1251 -t UTF-8 > /tmp/gnu-koryavov/${sem}-${zad}.tmp
+    mkdir -p /tmp/$tmp_dir/
+    curl -s  "https://mipt1.ru/1_2_3_4_5_kor.php?sem=$sem&zad=$zad" |  iconv -f WINDOWS-1251 -t UTF-8 > /tmp/$tmp_dir/${sem}-${zad}.tmp
     
 fi
 
-status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" /tmp/$tmp_dir/${sem}-${zad}.tmp)
 
 if [[ $? -eq 0 ]]; then
 
@@ -94,9 +97,9 @@ else
 fi
 
 
-# filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+# filesize=$(stat --format="%s" /tmp/$tmp_dir/${sem}-${zad}.tmp)
 # if [[ $filesize -eq 0 ]]; then
 
-#     rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
+#     rm /tmp/$tmp_dir/${sem}-${zad}.tmp
     
 # fi
