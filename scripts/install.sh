@@ -60,6 +60,8 @@ fi
 #echo $HOME
 
 
+echo "Installing gnu-koryavov..."
+
 mkdir -p -v $HOME/$home_dir/KORYAVNIKS
 cp -v ../config.conf $HOME/$home_dir
 sudo cp -v run.sh /usr/local/bin/$gnukoryavov_name
