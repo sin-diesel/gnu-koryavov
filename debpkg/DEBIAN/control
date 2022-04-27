@@ -1,0 +1,11 @@
+Package: gnu-koryavov
+Version: Ср 27 апр 2022 21:54:43 MSK
+Provides: gun-koryavov
+Maintainer: max max@mail.ru
+Architecture: all
+Section: utils
+Description: Searcher for solutions in V.P. Koryavov MIPT books
+Depends: bash, curl, egrep, sed, wget
+Recommends: okular, atril, evince, xreader, zathura
+Suggests: atril
+
