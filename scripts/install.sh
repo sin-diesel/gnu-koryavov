@@ -4,11 +4,13 @@ home_dir="gnu-koryavov"
 scipts_dir="scripts"
 gnukoryavov_name=gnu-koryavov
 main_config=./../configs/config.conf
-source ./../configs/install.conf
+install_config=./../configs/install.conf 
 
 
 read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
 
+
+source $install_config
 
 editor="NO EDITOR"
 
@@ -56,4 +58,6 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     fi
     
     echo "gnu-koryavov successfully installed."
+
+fi
 
