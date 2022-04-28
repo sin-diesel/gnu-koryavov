@@ -34,6 +34,7 @@ help() {
     echo "-s <number-of-semester>    Koryavnik to search into"
     echo "-n <task-number>           Task to search in Koryavnik"
     echo "-o                         Open digital Koryavnik"
+    echo "-h                         Print this information and exit"
 }
 
 
