@@ -80,11 +80,11 @@ fi
 
 set +e
 status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+ret_code=$?
+set -e
 
-if [[ $? -eq 0 ]]; then
+if [[ $ret_code -eq 0 ]]; then
     
-    set -e
-
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Task $zad found on page: $str_num!"
     
