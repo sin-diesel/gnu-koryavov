@@ -104,9 +104,7 @@ else
 fi
 
 
-# filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
-# if [[ $filesize -eq 0 ]]; then
-
-#     rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
-    
-# fi
+filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+if [[ $filesize -eq 0 ]]; then
+    rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
+fi
