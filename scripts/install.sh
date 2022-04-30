@@ -4,14 +4,15 @@ set -uo pipefail
 home_dir="gnu-koryavov"
 scipts_dir="scripts"
 gnukoryavov_name=gnu-koryavov
-dependencies=(curl egrep sed wget)
+main_config=../configs/config.conf
+install_config=../configs/install.conf 
 
-ubuntu_default_editor="atril"
 
 read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
 
 
-editors=(okular atril evince xreader zathura)
+source $install_config
+
 editor="NO EDITOR"
 
 for item in ${editors[*]}; do
@@ -31,7 +32,7 @@ if [[ $editor == "NO EDITOR" ]]; then
 fi
 
 echo "Choosen editor: $editor. You can change it as wrote in README"
-sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" ../config.conf
+sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" $main_config
 
 
 echo $HOME
@@ -39,7 +40,7 @@ echo $HOME
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
     mkdir -p -v $HOME/$home_dir/KORYAVNIKS
-    cp ../config.conf $HOME/$home_dir
+    cp $main_config $HOME/$home_dir
     sudo cp run.sh /usr/local/bin/$gnukoryavov_name
 
     for utility in ${dependencies[*]}; do
