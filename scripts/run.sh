@@ -29,6 +29,8 @@ download() {
 }
 
 
+should_open="false"
+
 # get input options
 while getopts ":s:n:oh" opt; do
     case ${opt} in
@@ -76,9 +78,12 @@ if [ ! -f /tmp/gnu-koryavov/${sem}-${zad}.tmp ]; then
     
 fi
 
+set +e
 status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
 
 if [[ $? -eq 0 ]]; then
+    
+    set -e
 
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Task $zad found on page: $str_num!"
@@ -101,3 +106,4 @@ fi
 #     rm /tmp/gnu-koryavov/${sem}-${zad}.tmp
     
 # fi
+
