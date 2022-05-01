@@ -27,6 +27,16 @@ download() {
 
 }
 
+help() {
+    echo "Usage:"
+    echo "gnu-koryavov [OPTIONS]"
+    echo ""
+    echo "-s <number-of-semester>    Koryavnik to search into"
+    echo "-n <task-number>           Task to search in Koryavnik"
+    echo "-o                         Open digital Koryavnik"
+    echo "-h                         Print this information and exit"
+}
+
 
 # get input options
 while getopts ":s:n:oh" opt; do
@@ -47,7 +57,7 @@ while getopts ":s:n:oh" opt; do
             echo "Digital koryavov book will be opened."
             ;;
         \?|h)
-            echo "Usage: TODO"
+            help
             exit 1
             ;;
     esac
@@ -55,7 +65,7 @@ done
 
 # exit if no option is provided
 if [ "$#" -lt 2 ]; then
-    echo "Usage: TODO"
+    help
     exit 1
 fi
 
