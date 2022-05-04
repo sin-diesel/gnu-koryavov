@@ -24,7 +24,7 @@ download() {
 
     source ~/gnu-koryavov/config.conf
 
-    cd ~/gnu-koryavov/KORYAVNIKS/ && wget -O ${sem}.djvu ${KORYAVNIKS[$sem]}
+    cd ~/gnu-koryavov/KORYAVNIKS/ && wget -q --show-progress -O ${sem}.djvu ${KORYAVNIKS[$sem]}
 
 }
 
