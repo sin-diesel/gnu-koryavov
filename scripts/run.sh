@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 open() {
 
@@ -37,6 +38,8 @@ help() {
     echo "-h                         Print this information and exit"
 }
 
+
+should_open="false"
 
 # get input options
 while getopts ":s:n:oh" opt; do
@@ -85,10 +88,13 @@ if [ ! -f /tmp/gnu-koryavov/${sem}-${zad}.tmp ]; then
     
 fi
 
+set +e
 status=$(egrep "Задача [[:digit:]]{1,2}\.[[:digit:]]{1,4} найдена" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
+ret_code=$?
+set -e
 
-if [[ $? -eq 0 ]]; then
-
+if [[ $ret_code -eq 0 ]]; then
+    
     str_num=$(echo $status | sed -nr "s/.*на странице №([[:digit:]]{1,4})!.*/\1/p")
     echo "Task $zad found on page: $str_num!"
     
@@ -102,7 +108,6 @@ if [[ $? -eq 0 ]]; then
 else
     echo "Task $zad not found in Koryavov :("
 fi
-
 
 filesize=$(stat --format="%s" /tmp/gnu-koryavov/${sem}-${zad}.tmp)
 if [[ $filesize -eq 0 ]]; then

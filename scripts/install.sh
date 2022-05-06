@@ -1,4 +1,5 @@
 #!/bin/bash
+set -uo pipefail
 
 home_dir="gnu-koryavov"
 scipts_dir="scripts"
