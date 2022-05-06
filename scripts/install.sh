@@ -1,12 +1,13 @@
 #!/bin/bash
+set -uo pipefail
 
 home_dir="gnu-koryavov"
 scipts_dir="scripts"
 gnukoryavov_name="gnu-koryavov"
-dependencies=(curl egrep sed wget)
-default_viewers=(okular atril evince xreader zathura)
+main_config=../configs/config.conf
+install_config=../configs/install.conf 
 
-#ubuntu_default_editor="atril"
+source $install_config
 
 
 read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
@@ -53,7 +54,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
         echo "No supported DjVU viewer intalled (see README for more information). Proceeding with default value"
     else
         echo "Choosen djvu viewer: $viewer. You can change it at any time (for more information see README)"
-        sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$viewer.sh/" ../config.conf
+        sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$viewer.sh/" $main_config
     fi
 fi
 
@@ -63,7 +64,7 @@ fi
 echo "Installing gnu-koryavov..."
 
 mkdir -p -v $HOME/$home_dir/KORYAVNIKS
-cp -v ../config.conf $HOME/$home_dir
+cp -v $main_config $HOME/$home_dir
 sudo cp -v run.sh /usr/local/bin/$gnukoryavov_name
 
 echo "gnu-koryavov successfully installed."
