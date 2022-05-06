@@ -32,7 +32,7 @@ done
 read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
-    cp ../editors/* $HOME/$home_dir/
+    cp -v ../editors/* $HOME/$home_dir/
 
     viewer="NO VIEWER"
 
@@ -51,7 +51,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     done
 
     if [[ $viewer == "NO VIEWER" ]]; then
-        echo "No supported DjVU viewer intalled (see README for more information). Proceeding with default value"
+        echo "No supported DjVU viewer installed (see README for more information). Proceeding with default value"
     else
         echo "Choosen djvu viewer: $viewer. You can change it at any time (for more information see README)"
         sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$viewer.sh/" $main_config
