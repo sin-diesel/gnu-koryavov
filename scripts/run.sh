@@ -74,6 +74,14 @@ fi
 
 shift $((OPTIND -1))
 
+if [[ $sem -lt 1 ]]; then
+    echo "Specify semester number correctly!"
+    exit 1
+elif (( $(echo "$zad < 1" | bc -l) )); then # compare task numer with 1
+    echo "Specify task number correctly!"
+    exit 1
+fi
+
 task_regex="[[:digit:]]+\.[[:digit:]]+"
 if ! [[ $zad =~ $task_regex ]]; then
     echo "Specify task number correctly!"
