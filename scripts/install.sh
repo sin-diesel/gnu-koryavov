@@ -3,62 +3,67 @@ set -uo pipefail
 
 home_dir="gnu-koryavov"
 scipts_dir="scripts"
-gnukoryavov_name=gnu-koryavov
+gnukoryavov_name="gnu-koryavov"
 main_config=../configs/config.conf
 install_config=../configs/install.conf 
 
-
-read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
-
-
 source $install_config
 
-editor="NO EDITOR"
 
-for item in ${editors[*]}; do
+read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
+if [[ $ans != "y"* && $ans != "Y"*  ]]; then
+    echo "Exiting..."
+    exit 0
+fi
 
-    $item --version &> /dev/null
-    if [[ $? == 0 ]]; then
-        editor=$item
-        break
+
+echo "Checking dependencies..."
+for utility in ${dependencies[*]}; do
+
+    $utility --version &> /dev/null
+    if [[ $? != 0 ]]; then
+        echo "$utility is not installed!"
+        exit 1
     fi
 
 done
 
-if [[ $editor == "NO EDITOR" ]]; then
 
-    echo "No supported DjVU viewer intalled"
-    exit 0
-fi
-
-echo "Choosen editor: $editor. You can change it as wrote in README"
-sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" $main_config
+echo "Installing gnu-koryavov..."
+mkdir -p -v $HOME/$home_dir/KORYAVNIKS
+sudo cp -v run.sh /usr/local/bin/$gnukoryavov_name
 
 
-echo $HOME
-
+read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
-    mkdir -p -v $HOME/$home_dir/KORYAVNIKS
-    cp $main_config $HOME/$home_dir
-    sudo cp run.sh /usr/local/bin/$gnukoryavov_name
+    cp -v ../editors/* $HOME/$home_dir/
 
-    for utility in ${dependencies[*]}; do
+    viewer="NO VIEWER"
 
-        $utility --version &> /dev/null
-        if [[ $? != 0 ]]; then
-            echo "$utility is not installed!"
-            exit 1
+    for item in ${default_viewers[*]}; do
+
+        $item --version &> /dev/null
+        if [[ $? == 0 ]]; then
+            viewer=$item
+
+            read -p "Found $viewer installed. Do you want to stop searching? (Y/n): " ans
+            if [[ $ans != "y"* || $ans != "Y"*  ]]; then
+                break
+            fi
         fi
 
     done
 
-    read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
-    if [[ $ans == "y"* || $ans == "Y"*  ]]; then
-        cp ../editors/* $HOME/$home_dir/
+    if [[ $viewer == "NO VIEWER" ]]; then
+        echo "No supported DjVU viewer installed (see README for more information). Proceeding with default value"
+    else
+        echo "Choosen djvu viewer: $viewer. You can change it at any time (for more information see README)"
+        sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$viewer.sh/" $main_config
     fi
-    
-    echo "gnu-koryavov successfully installed."
-
 fi
+
+
+cp -v $main_config $HOME/$home_dir
+echo "gnu-koryavov successfully installed."
 
