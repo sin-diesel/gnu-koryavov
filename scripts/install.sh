@@ -29,6 +29,11 @@ for utility in ${dependencies[*]}; do
 done
 
 
+echo "Installing gnu-koryavov..."
+mkdir -p -v $HOME/$home_dir/KORYAVNIKS
+sudo cp -v run.sh /usr/local/bin/$gnukoryavov_name
+
+
 read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
 if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
@@ -58,14 +63,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     fi
 fi
 
-#echo $HOME
 
-
-echo "Installing gnu-koryavov..."
-
-mkdir -p -v $HOME/$home_dir/KORYAVNIKS
 cp -v $main_config $HOME/$home_dir
-sudo cp -v run.sh /usr/local/bin/$gnukoryavov_name
-
 echo "gnu-koryavov successfully installed."
 
