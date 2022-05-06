@@ -50,7 +50,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
     done
 
-    if [[ $editor == "NO VIEWER" ]]; then
+    if [[ $viewer == "NO VIEWER" ]]; then
         echo "No supported DjVU viewer intalled (see README for more information). Proceeding with default value"
     else
         echo "Choosen djvu viewer: $viewer. You can change it at any time (for more information see README)"
