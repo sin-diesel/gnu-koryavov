@@ -4,35 +4,8 @@ set -uo pipefail
 home_dir="gnu-koryavov"
 scipts_dir="scripts"
 gnukoryavov_name=gnu-koryavov
-main_config=../configs/config.conf
-install_config=../configs/install.conf 
-
 
 read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " ans
-
-
-source $install_config
-
-editor="NO EDITOR"
-
-for item in ${editors[*]}; do
-
-    $item --version &> /dev/null
-    if [[ $? == 0 ]]; then
-        editor=$item
-        break
-    fi
-
-done
-
-if [[ $editor == "NO EDITOR" ]]; then
-
-    echo "No supported DjVU viewer intalled"
-    exit 0
-fi
-
-echo "Choosen editor: $editor. You can change it as wrote in README"
-sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$editor.sh/" $main_config
 
 
 echo $HOME
@@ -43,15 +16,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     cp $main_config $HOME/$home_dir
     sudo cp run.sh /usr/local/bin/$gnukoryavov_name
 
-    for utility in ${dependencies[*]}; do
-
-        $utility --version &> /dev/null
-        if [[ $? != 0 ]]; then
-            echo "$utility is not installed!"
-            exit 1
-        fi
-
-    done
+    exec ./preinst.sh
 
     read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
     if [[ $ans == "y"* || $ans == "Y"*  ]]; then
