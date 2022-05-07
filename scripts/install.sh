@@ -12,9 +12,11 @@ read -p "Are you sure you want to install gnu-koryavov on your system? (Y/n): " 
 
 echo $HOME
 
-    viewer="NO VIEWER"
+if [[ $ans == "y"* || $ans == "Y"*  ]]; then
 
-    for item in ${default_viewers[*]}; do
+    mkdir -p -v $HOME/$home_dir/KORYAVNIKS
+    cp $main_config $HOME/$home_dir
+    sudo cp run.sh /usr/local/bin/$gnukoryavov_name
 
     exec ./preinst.sh
     if [[ $? != 0 ]]; then
@@ -22,15 +24,11 @@ echo $HOME
         exit 0
     fi
 
-
-    if [[ $viewer == "NO VIEWER" ]]; then
-        echo "No supported DjVU viewer installed (see README for more information). Proceeding with default value"
-    else
-        echo "Choosen djvu viewer: $viewer. You can change it at any time (for more information see README)"
-        sed -i "/djvuviewer_script/s/=.*\.sh/=~\/gnu-koryavov\/$viewer.sh/" $main_config
+    read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
+    if [[ $ans == "y"* || $ans == "Y"*  ]]; then
+        cp ../editors/* $HOME/$home_dir/
     fi
+
+    echo "gnu-koryavov successfully installed."
+
 fi
-
-
-cp -v $main_config $HOME/$home_dir
-echo "gnu-koryavov successfully installed."
