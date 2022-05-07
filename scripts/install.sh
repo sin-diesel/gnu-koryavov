@@ -1,4 +1,3 @@
-main_config=../configs/config.conf
 #!/bin/bash
 set -uo pipefail
 
@@ -19,6 +18,10 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     sudo cp run.sh /usr/local/bin/$gnukoryavov_name
 
     exec ./preinst.sh
+    if [[ $? != 0]]; then
+        echo "Installation is not certified due to lack of dependencies"
+        exit 0
+    fi
 
     read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
     if [[ $ans == "y"* || $ans == "Y"*  ]]; then
