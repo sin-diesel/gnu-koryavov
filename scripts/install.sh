@@ -17,7 +17,7 @@ echo $HOME
     for item in ${default_viewers[*]}; do
 
     exec ./preinst.sh
-    if [[ $? != 0]]; then
+    if [[ $? != 0 ]]; then
         echo "Installation is not certified due to lack of dependencies"
         exit 0
     fi
