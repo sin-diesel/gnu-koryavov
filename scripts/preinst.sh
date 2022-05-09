@@ -2,7 +2,6 @@
 set -uo pipefail
 
 
-main_config=../configs/config.conf
 install_config=../configs/install.conf
 source $install_config
 
