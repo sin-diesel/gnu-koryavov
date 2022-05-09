@@ -19,7 +19,6 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     bash ./preinst.sh
     if [[ $? != 0 ]]; then
         echo "Installation is not certified due to lack of dependencies"
-        exit 0
     fi
 
     read -p "Are you going to use one of the default document viewer scripts? (Y/n): " ans
