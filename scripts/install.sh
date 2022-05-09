@@ -16,7 +16,7 @@ if [[ $ans == "y"* || $ans == "Y"*  ]]; then
     cp $main_config $HOME/$home_dir
     sudo cp run.sh /usr/local/bin/$gnukoryavov_name
 
-    exec ./preinst.sh
+    bash ./preinst.sh
     if [[ $? != 0 ]]; then
         echo "Installation is not certified due to lack of dependencies"
         exit 0
