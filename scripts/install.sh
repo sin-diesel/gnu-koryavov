@@ -1,12 +1,7 @@
 #!/bin/bash
 set -uo pipefail
 
-home_dir="gnu-koryavov"
-scipts_dir="scripts"
-gnukoryavov_name="gnu-koryavov"
-main_config=../configs/config.conf
-install_config=../configs/install.conf 
-
+install_config=../configs/install.conf
 source $install_config
 
 
@@ -17,17 +12,7 @@ if [[ $ans != "y"* && $ans != "Y"*  ]]; then
 fi
 
 
-echo "Checking dependencies..."
-for utility in ${dependencies[*]}; do
-
-    $utility --version &> /dev/null
-    if [[ $? != 0 ]]; then
-        echo "$utility is not installed!"
-        exit 1
-    fi
-
-done
-
+bash ./preinst.sh
 
 echo "Installing gnu-koryavov..."
 mkdir -p -v $HOME/$home_dir/KORYAVNIKS
